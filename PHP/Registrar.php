@@ -87,16 +87,20 @@
 		
 		include "ParametrosDB.php";
 		
+		$basededatos="usuarios";
+		
+		
 		
 		$username=$_POST['email'];
 		$name=$_POST['nombre'];
-		$pass=$_POST['pass'];
+		$password=$_POST['pass'];
 		$imagen = $_POST["imagen"];
 		
 		$soapclient = new nusoap_client( 'http://ehusw.es/jav/ServiciosWeb/comprobarmatricula.php?wsdl',true);
 		$soapclient1 = new nusoap_client( 'http://localhost/Sistemas_Web/Lab5/PHP/ComprobarPass.php?wsdl',true);
 		$result = $soapclient->call('comprobar',array( 'x'=>$_POST['email']));
 		$result1 = $soapclient1->call('pass',array( 'x'=>$_POST['pass'],'y'=>'1010'));
+		
 		/*
 		echo '<h2>Request</h2><pre>' . htmlspecialchars($soapclient1->request, ENT_QUOTES) . '</pre>';
 		echo '<h2>Response</h2><pre>' . htmlspecialchars($soapclient1->response, ENT_QUOTES) . '</pre>';
@@ -124,8 +128,9 @@
 			}
 			else{
 			
-				$mysql= mysqli_connect($server, $user, $pass, $basededatos) or die(mysqli_connect_error());
-				$sql = "INSERT INTO users (Email, NombreAp, Password, Imagen) VALUES('$username', '$name', '$pass', '$imagen')";
+				$Bloqueado = "no";
+				$mysql= mysqli_connect($server, $user, "", $basededatos) or die(mysqli_connect_error());
+				$sql = "INSERT INTO users (Email, NombreAp, Password, Imagen, Bloqueado) VALUES('$username', '$name', '$password', '$imagen', '$Bloqueado')";
 				
 				
 				if(!mysqli_query($mysql, $sql)){

@@ -51,12 +51,23 @@
 			mysqli_close( $mysql); //cierra la conexion
 			
 			if($cont==1){
-				echo "<center>";
-					echo "Login correcto<p>Puede insertar preguntas.</p>";
-					echo "<img src='../Imagenes/tick.png'><br>";
-					echo "<a href='../layoutRegistrado.php?email=$username'>Ir al menu</a><br>";
-				echo "</center>";
-				} 
+				session_start ();
+				$_SESSION['mail'] = $username;
+				if(strpos($_SESSION['mail'],"ehu.eus")==True){
+					echo "<center>";
+						echo "Login correcto<p>Puede insertar preguntas.</p>";
+						echo "<img src='../Imagenes/tick.png'><br>";
+						echo "<a href='../layoutRuser.php?email=$username'>Ir al menu</a><br>";
+					echo "</center>";
+				}
+				else{
+					echo "<center>";
+						echo "Login correcto<p>Puede gestionar cuentas.</p>";
+						echo "<img src='../Imagenes/tick.png'><br>";
+						echo "<a href='../layoutRadmin.php?email=$username'>Ir al menu</a><br>";
+					echo "</center>";
+				}
+			} 
 			else {
 				echo "<center>";
 					echo ("Par&aacute;metros de login incorrectos<p><br>");

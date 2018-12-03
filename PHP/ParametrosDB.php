@@ -7,7 +7,7 @@
 		$server="localhost";
 		$user="root";
 		$pass="";
-		$basededatos="quiz";
+		$basededatos="usuarios";
 	}
 	
 	else{

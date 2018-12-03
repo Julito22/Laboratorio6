@@ -30,7 +30,7 @@
 		</li>
 		<center>
 			<?php
-				echo "<a href='./layoutRegistrado.php?email=$correo'>Volver al menu de inicio</a><br>";
+				echo "<a href='./layoutRadmin.php?email=$correo'>Volver al menu de inicio</a><br>";
 			?>
 		</center>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>

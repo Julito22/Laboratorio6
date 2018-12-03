@@ -1,9 +1,21 @@
 <!DOCTYPE html>
 <html>
 	<?php
-
+		
+		session_start();
+		if (!isset($_SESSION['mail'])){
+			echo "<center>";
+					echo "<br><br><br>";
+					header("Location: ./negarAcceso.php");
+			echo "</center>";
+		}
+		if(strpos($_SESSION['mail'],"ehu.eus")==False){
+			echo "<center>";
+					echo "<br><br><br>";
+					header("Location: ./negarAcceso.php");
+			echo "</center>";
+		}
 		$correo = $_GET["email"];
-
 	?>
 
   <head>
@@ -28,7 +40,7 @@
 	<nav class='main' id='n1' role='navigation'>
 		<span>
 			<?php
-				echo "<a href='../layoutRegistrado.php?email=$correo'>Inicio</a><br>";
+				echo "<a href='../layoutRuser.php?email=$correo'>Inicio</a><br>";
 			?>
 		</span>
 		<span>
@@ -38,7 +50,7 @@
 		</span>
 		<span>
 			<?php
-				echo "<a href='../creditosR.php?email=$correo'>Creditos</a><br>";
+				echo "<a href='../creditosRU.php?email=$correo'>Creditos</a><br>";
 			?>
 		</span>
 	</nav>

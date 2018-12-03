@@ -37,7 +37,7 @@
 			}	
 			
 		echo"</table>";
-		echo "<a href='../layoutRegistrado.php?email=$correo'>Inicio</a><br>";
+		echo "<a href='../layoutRuser.php?email=$correo'>Inicio</a><br>";
 		
 	echo "</body>";
 	

@@ -2,7 +2,8 @@
 <html>
 
 	<?php
-
+		
+			
 		$correo = $_GET["email"];
 		//echo"<h1> $correo </h1>";
 
@@ -24,28 +25,23 @@
 	<body>
 		<div id='page-wrap'>
 			<header class='main' id='h1'>
-				<span class="right"><a href="./layoutNR.html">Logout</a></span>
+				<span class="right"><a href="./PHP/Logout.php">Logout</a></span>
 				<h2>Quiz: el juego de las preguntas</h2>
 			</header>
 		<nav class='main' id='n1' role='navigation'>
 			<span>
 				<?php
-					echo "<a href='./layoutRegistrado.php?email=$correo'>Inicio</a><br>";
+					echo "<a href='./layoutRadmin.php?email=$correo'>Inicio</a><br>";
 				?>
 			</span>
 			<span>
 				<?php
-					echo "<a href='PHP/gestionarPreguntas.php?email=$correo'>Gestionar Preguntas</a><br>";
+					echo "<a href='PHP/gestionarCuentas.php?email=$correo'>Gestionar cuentas</a><br>";
 				?>
 			</span>
 			<span>
 				<?php
-					echo "<a href='./PHP/verPreguntasXML.php?email=$correo'>ver XML</a><br>";
-				?>
-			</span>
-			<span>
-				<?php
-					echo "<a href='./creditosR.php?email=$correo'>Creditos</a><br>";
+					echo "<a href='./creditosRA.php?email=$correo'>Creditos</a><br>";
 				?>
 			</span>
 		</nav>
