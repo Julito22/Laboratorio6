@@ -16,6 +16,7 @@
 			echo "</center>";
 		}
 		$correo = $_GET["email"];
+		$email = $_SESSION['mail'];
 	?>
 
   <head>
@@ -34,8 +35,9 @@
   <body>
   <div id='page-wrap'>
 	<header class='main' id='h1'>
-			<span class="right"><a href="../layoutNR.html">Logout</a></span>
+		<span class="right"><a href="../layoutNR.html">Logout</a></span>
 		<h2>Quiz: el juego de las preguntas</h2>
+		<?php echo"<h3>Bienvenido ".$email."></h3>" ?>
     </header>
 	<nav class='main' id='n1' role='navigation'>
 		<span>

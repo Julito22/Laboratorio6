@@ -21,12 +21,15 @@
 				<h2>Identificación de usuario </h2>
 				<p> Email : <input type="email" required name="email" size="21" value="" />
 				<p> Password: <input type="password" required name="pass" size="21" value="" />
-				<p> <input id="input_2" type="submit" />
+				<p> <input id="input_2" type="submit" /> <br>
+				<a href='./recuperarContrasena.php'> ¿Has olvidado tu contraseña?</a> <br>
+				<a href='../layoutNR.html'> Volver al menu inicial</a>
 			</center>
 		</form>
 	</body>
 	
 	<?php
+		
 
 		include "ParametrosDB.php";
 		$basededatos="usuarios";
@@ -45,12 +48,29 @@
 			
 			$username=$_POST['email'];
 			$pass=$_POST['pass'];
-			$usuarios = mysqli_query( $mysql,"select * from users where Email ='$username' and Password ='$pass'");
+			$str = (string)$pass;
+			//$pass = string strval ( $pass )
 			
-			$cont= mysqli_num_rows($usuarios); //Se verifica el total de filas devueltas
-			mysqli_close( $mysql); //cierra la conexion
+			$passHash = mysqli_query( $mysql,"select Password from users where Email ='$username'");
+			$row = mysqli_fetch_array($passHash);
+			$passH = $row['Password'];
+			mysqli_close( $mysql);
 			
-			if($cont==1){
+			if(password_verify($str, $passH)==FALSE){
+				echo "<center>";
+					echo ("Contraseña incorrecta<p><br>");
+					echo "<img src='../Imagenes/tickRojo.png'><br>";
+					echo " <a href='Login.php'>Puede intentarlo de nuevo</a><br>";
+					echo "<a href='../layoutNR.html'>Ir al menu</a><br>";
+				echo "</center>";
+			}
+			else{
+				/*
+				$usuarios = mysqli_query( $mysql,"select * from users where Email ='$username' and Password ='$pass'");			
+				$cont= mysqli_num_rows($usuarios); //Se verifica el total de filas devueltas
+				mysqli_close( $mysql); //cierra la conexion
+				*/
+				
 				session_start ();
 				$_SESSION['mail'] = $username;
 				if(strpos($_SESSION['mail'],"ehu.eus")==True){
@@ -67,14 +87,6 @@
 						echo "<a href='../layoutRadmin.php?email=$username'>Ir al menu</a><br>";
 					echo "</center>";
 				}
-			} 
-			else {
-				echo "<center>";
-					echo ("Par&aacute;metros de login incorrectos<p><br>");
-					echo "<img src='../Imagenes/tickRojo.png'><br>";
-					echo " <a href='Login.php'>Puede intentarlo de nuevo</a><br>";
-					echo "<a href='../layoutNR.html'>Ir al menu</a><br>";
-				echo "</center>";
 			}
 		}
 	?>

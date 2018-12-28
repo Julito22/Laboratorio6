@@ -94,6 +94,7 @@
 		$username=$_POST['email'];
 		$name=$_POST['nombre'];
 		$password=$_POST['pass'];
+		$passHash = password_hash($password, PASSWORD_BCRYPT);
 		$imagen = $_POST["imagen"];
 		
 		$soapclient = new nusoap_client( 'http://ehusw.es/jav/ServiciosWeb/comprobarmatricula.php?wsdl',true);
@@ -130,7 +131,7 @@
 			
 				$Bloqueado = "no";
 				$mysql= mysqli_connect($server, $user, "", $basededatos) or die(mysqli_connect_error());
-				$sql = "INSERT INTO users (Email, NombreAp, Password, Imagen, Bloqueado) VALUES('$username', '$name', '$password', '$imagen', '$Bloqueado')";
+				$sql = "INSERT INTO users (Email, NombreAp, Password, Imagen, Bloqueado) VALUES('$username', '$name', '$passHash', '$imagen', '$Bloqueado')";
 				
 				
 				if(!mysqli_query($mysql, $sql)){

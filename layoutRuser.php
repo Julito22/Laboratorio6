@@ -3,8 +3,9 @@
 
 	<?php
 		
-			
+		session_start ();	
 		$correo = $_GET["email"];
+		$email = $_SESSION['mail'];
 		//echo"<h1> $correo </h1>";
 
 	?>
@@ -27,6 +28,7 @@
 			<header class='main' id='h1'>
 				<span class="right"><a href="./PHP/Logout.php">Logout</a></span>
 				<h2>Quiz: el juego de las preguntas</h2>
+				<?php echo"<h3>Bienvenido ".$email."</h3>" ?>
 			</header>
 		<nav class='main' id='n1' role='navigation'>
 			<span>
